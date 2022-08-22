@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_131907) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "tite"
+    t.string "title"
     t.text "text"
     t.integer "comments_counter"
     t.integer "likes_counter"
