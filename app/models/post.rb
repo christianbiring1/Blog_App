@@ -7,12 +7,7 @@ class Post < ApplicationRecord
   # Validations
 
   validates_presence_of :title, :text
-
-  # You could use tokenizer option of the length validator, to count only the words, not the line breaks.
-  validates :title, length: {
-    maximum: 250,
-    tokenizer: lambda { |str| str.scan(/\w+/) }
-  }
+  validates :title, length: { maximum: 250 }
   validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def update_posts_counter
