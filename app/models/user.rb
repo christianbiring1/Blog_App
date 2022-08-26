@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :likes, foreign_key: 'author_id'
   has_many :posts, foreign_key: 'author_id'
 
+  after_initialize :init
+
   # Validation
 
   validates :name, presence: true
@@ -11,5 +13,10 @@ class User < ApplicationRecord
 
   def three_last_posts
     posts.order('created_at').last(3)
+  end
+
+  def init
+    self.posts_counter ||= 0
+    true
   end
 end

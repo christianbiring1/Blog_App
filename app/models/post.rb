@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_many :comments, foreign_key: 'post_id'
   has_many :likes, foreign_key: 'post_id'
 
+  after_initialize :init
+
   # Validations
 
   validates_presence_of :title, :text
@@ -16,5 +18,11 @@ class Post < ApplicationRecord
 
   def five_last_comments
     comments.order('created_at').last(5)
+  end
+
+  def init
+    self.comments_counter ||= 0
+    self.likes_counter ||= 0
+    true
   end
 end
