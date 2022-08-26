@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  #tests go here
+  # tests go here
   before :each do
     @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
   end
 
+  # rubocop:disable Metrics/BlockLength
   context 'validation' do
     it 'is valid with attributes' do
       post = Post.create(title: 'Title', text: 'text', author_id: @author.id)
@@ -45,9 +46,9 @@ RSpec.describe Post, type: :model do
       expect(post).to_not be_valid
     end
   end
+  # rubocop:enable Metrics/BlockLength
 
   context 'Associations' do
-
     it 'Should have many comments' do
       assc = described_class.reflect_on_association(:comments)
       expect(assc.macro).to eq :has_many

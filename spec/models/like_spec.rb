@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  #tests go here
+  # tests go here
   before :each do
     @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
     @post = Post.create(title: 'title', text: 'Some text', author_id: @author.id)
@@ -13,7 +13,6 @@ RSpec.describe Like, type: :model do
   end
 
   context 'Associations' do
-
     it 'Should belong to an Author' do
       assc = described_class.reflect_on_association(:author)
       expect(assc.macro).to eq :belongs_to
@@ -26,7 +25,6 @@ RSpec.describe Like, type: :model do
   end
 
   context 'custom methods' do
-    
     it 'Should update the likes' do
       expect(@like.update_like_counter).to eq(@post.update(likes_counter: @post.likes.count))
     end
