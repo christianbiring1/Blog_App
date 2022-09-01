@@ -34,4 +34,4 @@ RSpec.describe 'Users', type: :request do
       expect(response.body).to include('This is a user among the list')
     end
   end
-end 
+end
