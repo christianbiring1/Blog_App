@@ -1,2 +1,22 @@
-<h1>Specific Post for a user</h1>
-<p>This is a user's post among the list</p>
+<section >
+<div class="post-wrapper">
+<div>
+  <span>
+    Post #<%= @post.id %> <%= @post.title %> by  <%= @post.author.name %>
+  </span>
+  <span>
+    Comments: <%= @post.comments_counter %> , Likes: <%= @post.likes_counter %>
+  </span>
+</div>
+<p><%= @post.text %></p>
+</div>
+  <ul class="comments-list-cont">
+      <%if @post.comments_counter > 0%>
+        <% @post.comments.each do |comment| %>
+          <li>
+            <%= comment.text%>
+          </li>
+        <% end %>
+      <% end %>
+  </ul>   
+</section>

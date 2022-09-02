@@ -1,2 +1,20 @@
-<h1>User's Post</h1>
-<p>List of all Posts for a specific Users</p>
+<div>
+  <%= render 'shared/user_details'%>
+</div>
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <h3><%= link_to post.title, user_post_path(@user.id, post) %></h3>
+      <p><%= post.text%></p>
+      <div>
+        <% if post.comments.empty? %>
+          <p>0 Comments</p>
+          <% else %>
+            <% post.comments.each do |comment| %>
+            <p> <%= comment.text %> <span>by: <%= comment.author.name %></span></p>
+          <% end %>  
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
