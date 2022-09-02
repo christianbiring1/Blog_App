@@ -1,9 +1,11 @@
-<div>
+<div class="users-container">
   <% @users.each do |user| %>
-    <%= image_tag user.photo, size: '200x100', alt: user.name + 'photo'%>
-    <div>
-      <h1><%= link_to user.name, user %></h1>
-      <p>Number of posts: <%= user.posts_count%></p>
+    <div class="user-wrapper">
+      <%= image_tag user.photo, size: '150x100', alt: user.name + 'photo'%>
+      <div class="user-stat">
+        <h1 class="user-name"><%= link_to user.name, user %></h1>
+        <p class="user-post">Number of posts: <%= user.posts_count%></p>
+      </div>
     </div>
   <% end %>
 </div>

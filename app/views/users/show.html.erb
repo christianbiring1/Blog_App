@@ -1,16 +1,22 @@
-<div class="user_details">
+<div class="user-details">
   <%= render 'shared/user_details'%>
   <section class="user_bio">
     <h3>Bio:</h3>
-    <p><%= @user.bio %></p>
+    <p class="post-content"><%= @user.bio %></p>
   </section>
   <section class="user_posts">
     <% @user.three_last_posts.each_with_index do |post, index| %>
       <div class="post_details">
-        <h3>Post#<%= index %>: <%= post.title %></h3>
-        <p><%= post.text %></p>
+        <h3 class="post-title">Post#<%= index %>: <%= post.title %></h3>
+        <p class="post-content"><%= post.text %></p>
+        <div class="bottom_stat">
+          <span>Comments: <%= post.comments_count %></span>
+          <span>Likes: <%= post.likes_count %></span>
+        </div>
       </div>
     <% end %>
   </section>
-  <%= link_to "See all posts", user_posts_path(@user) %>
+  <button class="see-more">
+    <%= link_to "See all posts", user_posts_path(@user) %>
+  </button>
 </div>
