@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   # Associations
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :author, class_name: 'User', counter_cache: true, foreign_key: 'author_id'
   has_many :comments, foreign_key: 'post_id'
   has_many :likes, foreign_key: 'post_id'
 
@@ -10,10 +10,10 @@ class Post < ApplicationRecord
 
   validates_presence_of :title, :text
   validates :title, length: { maximum: 250 }
-  validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :comments_count, :likes_count, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def update_posts_counter
-    author.update(posts_counter: author.posts.count)
+    author.update(posts_count: author.posts.count)
   end
 
   def five_last_comments
@@ -21,8 +21,8 @@ class Post < ApplicationRecord
   end
 
   def init
-    self.comments_counter ||= 0
-    self.likes_counter ||= 0
+    self.comments_count ||= 0
+    self.likes_count ||= 0
     true
   end
 end

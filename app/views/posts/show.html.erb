@@ -5,13 +5,13 @@
     Post #<%= @post.id %> <%= @post.title %> by  <%= @post.author.name %>
   </span>
   <span>
-    Comments: <%= @post.comments_counter %> , Likes: <%= @post.likes_counter %>
+    Comments: <%= @post.comments_count %> , Likes: <%= @post.likes_count %>
   </span>
 </div>
 <p><%= @post.text %></p>
 </div>
   <ul class="comments-list-cont">
-      <%if @post.comments_counter > 0%>
+      <%if @post.comments_count > 0%>
         <% @post.comments.each do |comment| %>
           <li>
             <%= comment.text%>

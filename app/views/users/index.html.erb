@@ -1,10 +1,9 @@
 <div>
   <% @users.each do |user| %>
-    <%= image_tag user.photo, alt: user.name + 'photo'%>
-    <%= image_tag "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80", size: "190x60" %>
+    <%= image_tag user.photo, size: '200x100', alt: user.name + 'photo'%>
     <div>
       <h1><%= link_to user.name, user %></h1>
-      <p>Number of posts: <%= user.posts_counter%></p>
+      <p>Number of posts: <%= user.posts_count%></p>
     </div>
   <% end %>
 </div>
