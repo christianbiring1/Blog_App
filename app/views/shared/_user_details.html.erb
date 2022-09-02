@@ -1,6 +1,6 @@
 <section class="top-part">
   <%# <%= link_to "Add post", new_post_path%> %>
-  <%= image_tag @user.photo, size: "160x90", alt: @user.name + 'photo' %>
+  <%= image_tag @user.photo , alt: @user.name + 'photo' %>
   <div>
     <h1><%= @user.name %></h1>
     <p>Number of posts: <%= @user.posts_counter %></p>
