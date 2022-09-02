@@ -4,14 +4,16 @@
 <div>
   <% @posts.each do |post| %>
     <div>
-      <h3><%= link_to post.title, user_post_path(@user.id, post) %></h3>
-      <p><%= post.text%></p>
-      <div>
+      <div class="post-content_wrapper">
+        <h3 class="post-title"><%= link_to 'Post#' +'  '+ post.title, user_post_path(@user.id, post) %></h3>
+        <p><%= post.text%></p>
+      </div>
+      <div class="comment_details">
         <% if post.comments.empty? %>
           <p>0 Comments</p>
           <% else %>
             <% post.comments.each do |comment| %>
-            <p> <%= comment.text %> <span>by: <%= comment.author.name %></span></p>
+            <p> <%= comment.author.name %> <span>: <%= comment.text %></span></p>
           <% end %>  
         <% end %>
       </div>

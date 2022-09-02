@@ -1,19 +1,20 @@
 <section >
 <div class="post-wrapper">
-<div>
-  <span>
-    Post #<%= @post.id %> <%= @post.title %> by  <%= @post.author.name %>
-  </span>
-  <span>
-    Comments: <%= @post.comments_count %> , Likes: <%= @post.likes_count %>
-  </span>
+  <div class="top-post">
+    <span>
+      Post #<%= @post.id %> <%= @post.title %> by  <%= @post.author.name %>
+    </span>
+    <span>
+      Comments: <%= @post.comments_count %> , Likes: <%= @post.likes_count %>
+    </span>
+  </div>
+  <p class="post-comment"><%= @post.text %></p>
 </div>
-<p><%= @post.text %></p>
-</div>
-  <ul class="comments-list-cont">
+  <ul class="comments-list">
       <%if @post.comments_count > 0%>
         <% @post.comments.each do |comment| %>
           <li>
+            <%= comment.author.name%>:
             <%= comment.text%>
           </li>
         <% end %>
