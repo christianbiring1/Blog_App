@@ -9,6 +9,7 @@
     </span>
   </div>
   <p class="post-comment"><%= @post.text %></p>
+  <%= render 'shared/new_like' %>
 </div>
   <ul class="comments-list">
       <%if @post.comments_count > 0%>
@@ -19,5 +20,6 @@
           </li>
         <% end %>
       <% end %>
+      <%= render 'shared/new_comment' %>
   </ul>   
 </section>
