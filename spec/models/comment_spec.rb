@@ -26,7 +26,7 @@ RSpec.describe Comment, type: :model do
 
   context 'Custom method' do
     it 'Should update the commnets on the post' do
-      expect(@comment.update_comments_counter).to eq(@post.update(comments_counter: @post.comments.count))
+      expect(@comment.update_comments_counter).to eq(@post.update(comments_count: @post.comments.count))
     end
   end
 end

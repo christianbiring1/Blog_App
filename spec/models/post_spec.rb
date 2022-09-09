@@ -36,13 +36,13 @@ RSpec.describe Post, type: :model do
 
     it 'Sould not be valid with comments counter in string' do
       post = Post.create(title: 'title', text: 'Some text', author_id: @author.id)
-      post.comments_counter = 'first'
+      post.comments_count = 'first'
       expect(post).to_not be_valid
     end
 
     it 'Sould not be valid with likess counter in string' do
       post = Post.create(title: 'title', text: 'Some text', author_id: @author.id)
-      post.likes_counter = 'first like'
+      post.likes_count = 'first like'
       expect(post).to_not be_valid
     end
   end

@@ -18,13 +18,13 @@ RSpec.describe User, type: :model do
   end
 
   it 'post counter should be  integer' do
-    @user.posts_counter = 'first'
+    @user.posts_count = 'first'
     @user.save
     expect(@user).to_not be_valid
   end
 
   it 'post counter should be greater or equal to zero' do
-    @user.posts_counter = -1
+    @user.posts_count = -1
     @user.save
     expect(@user).to_not be_valid
   end
