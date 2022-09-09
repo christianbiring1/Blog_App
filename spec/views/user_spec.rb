@@ -4,7 +4,7 @@ RSpec.describe User, type: :system do
   before :each do
     @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
     @user2 = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-0BxGuVv1', bio: 'Teacher from Poland.')
-    @user1.posts.create(title: 'This first post', text: 'This is the content of my first post')
+    @user1.posts.create(title: 'This is my first post', text: 'This is the content of my first post')
     @user2.posts.create(title: 'This is my first post', text: 'This is the content of my second post')
   end
   describe 'index page' do
@@ -74,6 +74,25 @@ RSpec.describe User, type: :system do
       visit user_path(@user1.id)
       click_link 'See all posts'
       expect(current_path).to eq(user_posts_path(@user1.id))
+    end
+  end
+
+  describe 'User posts index page' do
+    it 'Should display user photo' do
+      visit user_posts_path(@user1.id)
+      expect(page).to have_css("img[src*='https://unsplash.com/photos/F_-0BxGuVvo']")
+    end
+    it 'Should display user name' do
+      visit user_posts_path(@user1.id)
+      expect(page).to have_content('Tom')
+    end
+    it 'Should display user s posts count ' do
+      visit user_posts_path(@user1.id)
+      expect(page).to have_content('Number of posts: 1')
+    end
+    it 'Should display post title' do
+      visit user_posts_path(@user1.id)
+      expect(page).to have_content('This is my first post')
     end
   end
 end
