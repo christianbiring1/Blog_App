@@ -82,17 +82,44 @@ RSpec.describe User, type: :system do
       visit user_posts_path(@user1.id)
       expect(page).to have_css("img[src*='https://unsplash.com/photos/F_-0BxGuVvo']")
     end
+
     it 'Should display user name' do
       visit user_posts_path(@user1.id)
       expect(page).to have_content('Tom')
     end
+
     it 'Should display user s posts count ' do
       visit user_posts_path(@user1.id)
       expect(page).to have_content('Number of posts: 1')
     end
+
     it 'Should display post title' do
       visit user_posts_path(@user1.id)
       expect(page).to have_content('This is my first post')
+    end
+  end
+
+  describe 'User posts show page' do
+    it 'Should display the post text' do
+      visit user_posts_path(@user1.id)
+      expect(page).to have_content('This is the content of my first post')
+    end
+
+    it 'Should display the number of comments' do
+      visit user_post_path(@user1.id, @user1.posts.first.id)
+      expect(page).to have_content('Comments: 0')
+    end
+
+    it 'Should display first comment' do
+      @user1.comments.create(post_id: @user1.posts.first.id, text: 'First Comment')
+      visit user_posts_path(@user1.id)
+      expect(page).to have_content('First Comment')
+    end
+
+    it 'Should redirect to post s page' do
+      visit user_posts_path(@user1.id)
+      click_link 'This is my first post'
+      expect(current_path).to eq(user_post_path(@user1.id, @user1.posts.first.id))
     end
   end
 end
