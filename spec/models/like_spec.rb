@@ -26,7 +26,7 @@ RSpec.describe Like, type: :model do
 
   context 'custom methods' do
     it 'Should update the likes' do
-      expect(@like.update_like_counter).to eq(@post.update(likes_counter: @post.likes.count))
+      expect(@like.update_like_counter).to eq(@post.update(likes_count: @post.likes.count))
     end
   end
 end
