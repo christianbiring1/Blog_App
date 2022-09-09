@@ -31,4 +31,49 @@ RSpec.describe User, type: :system do
       expect(current_path).to eq(user_path(@user1.id))
     end
   end
+
+  describe 'user show page' do
+    it 'The profil picture should be visible' do
+      visit user_path(@user1.id)
+      expect(page).to have_css("img[src='https://unsplash.com/photos/F_-0BxGuVvo']")
+    end
+
+    it 'Should show the user\'s name' do
+      visit user_path(@user1.id)
+      expect(page).to have_content('Tom')
+    end
+
+    it 'Should show the number of post the user have' do
+      visit user_path(@user1.id)
+      expect(page).to have_content('Number of posts: 1')
+    end
+
+    it 'Should show the user\'s bio' do
+      visit user_path(@user1.id)
+      expect(page).to have_content('Teacher from Mexico.')
+    end
+
+    it 'Should show the user\'s first three posts' do
+      i = 1
+      3.times do
+        @user1.posts.create(title: "Post#{i}", text: 'Post content')
+        i += 1
+      end
+      visit user_path(@user1.id)
+      expect(page).to have_content('Post1')
+      expect(page).to have_content('Post2')
+      expect(page).to have_content('Post3')
+    end
+
+    it 'Should display see all posts button' do
+      visit user_path(@user1.id)
+      expect(page).to have_content('See all posts')
+    end
+
+    it 'Should display all user post' do
+      visit user_path(@user1.id)
+      click_link 'See all posts'
+      expect(current_path).to eq(user_posts_path(@user1.id))
+    end
+  end
 end
