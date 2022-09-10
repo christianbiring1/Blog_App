@@ -30,6 +30,6 @@ class User < ApplicationRecord
   end
 
   def admin?
-    role = 'admin'
+    self.role = 'admin'
   end
 end
