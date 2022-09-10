@@ -9,10 +9,20 @@
       <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
     </div>
 
-    <%# <div class="field"> %>
-      <%# <%= f.label :email %>
-      <%# <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%# </div> %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :photo, "Profile Image Url" , class:'label'%><br />
+      <%= f.text_field :photo, autofocus: true, autocomplete: "photo",class:"title-input"%>
+    </div>
+
+    <div class="field">
+      <%= f.label :bio, "Biography" , class:'label'%><br />
+      <%= f.text_area :bio, autofocus: true, autocomplete: "bio" ,class:"text-input"%>
+    </div>
 
     <div class="field">
       <%= f.label :password %>
