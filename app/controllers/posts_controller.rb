@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :set_user, only: %i[index show new]
   before_action :authenticate_user!, only: %i[new create]
 
-
   def index
     @user = User.find(params[:user_id])
     @posts = Post.where(author_id: params[:user_id])
@@ -36,7 +35,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.destroy
       flash[:notice] = 'The post has been deleted successfully!'
-    redirect_to user_posts_path(current_user)
+      redirect_to user_posts_path(current_user)
     else
       flash[:alert] = 'the post was\'nt deleted'
     end
