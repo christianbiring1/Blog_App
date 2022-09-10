@@ -18,7 +18,7 @@ class Api::V1::CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html { redirect_to user_post_path(current_user, @post), notice: 'Comment created successfully' }
-    format.json { render json: @comment, status: :created }
+        format.json { render json: @comment, status: :created }
       end
     else
       respond_to do |format|
