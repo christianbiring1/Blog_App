@@ -1,4 +1,5 @@
 <section >
+<%=link_to 'Back', user_posts_path %>
 <div class="post-wrapper">
   <div class="top-post">
     <span>
@@ -7,6 +8,9 @@
     <span>
       Comments: <%= @post.comments_count %> , Likes: <%= @post.likes_count %>
     </span>
+    <%if can? :manage, @post%>
+      <%=button_to "delete", user_post_path, method: :delete,  data: {confirm: 'Are You Sure You Want to Delete This Post', turbo: false}, class: 'log_out'%>
+    <% end %>
   </div>
   <p class="post-comment"><%= @post.text %></p>
   <%= render 'shared/new_like' %>
@@ -17,6 +21,9 @@
           <li>
             <%= comment.author.name%>:
             <%= comment.text%>
+            <%if can? :manage, comment%>
+              <%=button_to "delete", user_post_comment_path(current_user,@post.id,comment.id), method: :delete,  data: {confirm: 'Are You Sure You Want to Delete This comment', turbo: false}, class: 'log_out'%>
+            <% end %>
           </li>
         <% end %>
       <% end %>
